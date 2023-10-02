@@ -1,0 +1,18 @@
+version: "3"
+services:
+  client_service:
+    build: ./web
+    container_name: client_service
+    ports:
+      - "3001:80"
+    environment:
+      - NEXT_PUBLIC_API=http://api_files/download
+
+    depends_on:
+      - api_files
+
+  api_files:
+    build: ./api
+    container_name: api_files
+    ports:
+      - "3000:3000"
